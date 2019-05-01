@@ -12,11 +12,9 @@ setup(
     long_description=open('README.md').read(),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Red Teamers/Penetration Tester",
-        "GNU Lesser General Public License v2 or later (LGPLv2+)",
         "Operating System :: OS Independent",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3",
         "Topic :: System :: Networking",
     ],
     entry_points={
