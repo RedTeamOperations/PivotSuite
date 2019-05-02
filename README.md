@@ -53,4 +53,170 @@ PivotSuite works out of the box with Python version 2.7.x and 3.6.x on any platf
  
     a. Only Python Standard Libraries are Required
     b. Compatible for both Python 2.7.x & Python 3.6.x
+
+ #### Usages :
   
+  $ pivotsuite.py [options] SERVER-IP SERVER-PORT
+
+
+Options:
+
+     --version             show program's version number and exit
+  
+    -h, --help            show this help message and exit
+  
+    -S, --server          Run PivotSuite as a Server
+  
+    -C, --client          Run PivotSuite as a Client
+  
+     - -server-ip=SERVER_IP
+  
+                        Server Listen/Connect IP address, Default  0.0.0.0
+                        
+     --server-port=SERVER_PORT
+  
+                        Server Listen/Connect Port, Default 7777
+                        
+
+  PivotSuite Server Options:
+  
+    -F, --forward-connection
+    
+                        Forward Network Traffic
+                        
+    --server-option=SP/PF
+    
+                        Use Server as Socks_Proxy(SP)/Port_Forward(PF),
+                        Default SP
+                        
+    --network-protocol=T/U
+    
+                        Select Protocol For Port Forwarding TCP(T)/ UDP(U),
+                        Default T
+                        
+    --forward-ip=Remote-Host-IP
+    
+                        Remote Host IP for Port Forwarding
+                        
+    --forward-port=Remote-Host-Port
+    
+                        Remote Host Port for Port Forwarding
+                        
+    -W, --reverse-connection
+    
+                        Reverse Network Traffic
+
+
+  PivotSuite Client Options:
+  
+    -O SP/PF/NE, --option=SP/PF/NE
+                        Use Client as Socks_Proxy(SP)/ Port_Forwarding(PF)/
+                        Network_Enumeration(NE), Default SP
+                        
+    -L, --local-forward
+    
+                        Use Local Port Forwarding
+                        
+    -R, --remote-forward
+    
+                        Use Remote Port Forwarding
+                        
+    -P T/U, --protocol=T/U
+    
+                        Select Protocol For Port Forwarding TCP(T)/ UDP(U),
+                        Default T
+                        
+    --local-ip=LOCAL_IP
+    
+                        Local IP For Port Forwarding
+                        
+    --local-port=LOCAL_PORT
+    
+                        Local Port For Port Forwarding
+                        
+    --remote-ip=REMOTE_IP
+    
+                        Remote IP For Port Forwarding
+                        
+    --remote-port=REMOTE_PORT
+    
+                        Remote Port For Port Forwarding
+                        
+
+  NTLM Proxy Authentication Options:
+  
+    --ntlm-proxy-ip=NTLM_PROXY_IP
+    
+                        IP address of NTLM proxy
+                        
+    --ntlm-proxy-port=NTLM_PROXY_PORT
+    
+                        Port of NTLM proxy
+                        
+    --username=USERNAME
+    
+                        Username to authenticate with NTLM proxy
+                        
+    --domain=DOMAIN     Domain to authenticate with NTLM proxy
+    
+    --password=PASSWORD
+    
+                        Password to authenticate with NTLM proxy
+                        
+    --hashes=HASHES     Hashes to authenticate with instead of password.
+                        Format - LMHASH:NTHASH
+  
+  
+  #### Documentation 
+  
+##### Case 1 : (Forward TCP Tunneling)
+
+IF the Compromised host is directly accessible from our pentest machine.
+
+
+    Then run PivotSuite as a server on the compromised machine as per our requirements:
+
+        a. Dynamic Port Forwarding (Socks5 Proxy Server) On Compromised machine:
+
+             $  python pivotsuite.py -S -F --server-option SP --server-ip IP --server-port PORT
+
+
+        b. Single Port Forwarding (TCP/UDP Relay) On Compromised machine :
+
+            $ python pivotsuite.py -S -F --server-option PF --network-protocol T/U --remote-ip IP --remote-port PORT 
+              --server-ip IP (local-ip) --server-port PORT (local-port)
+
+
+##### Case 2 : (Reverse TCP Tunneling)
+
+IF the Compromised host is behind a Firewall / NAT and directly not accessible from our pentest machine.
+
+
+    Then run PivotSuite as a Server on pentest machine and PivotSuite as a Client on compromised machine.
+
+
+      i. Run PivotSuite as a Sever On Pentest Machine :
+
+          $ python pivotsute.py -S -W 
+
+
+      ii. Run PivotSuite as a Client on Compromise Machine as per our requirements:
+
+          a. Dynamic Port Forwarding (Socks5 Proxy Server) On Pentest Machine:
+
+              $ python pivotsuite.py -C -O SP --server-ip IP --server-port PORT
+
+          b. Local / Remote Port Forwarding On Pentest Machine:
+
+               $ python pivotsuite.py -C -O PF  - L / -R (local or remote port forwarding) -P T/U  --local-ip IP 
+                  --local-port PORT --remote-ip IP --remote-port PORT  --server-ip IP --server-port PORT
+
+          c. Network Enumeration of Compromised Machine:
+
+                $ python pivotsuite.py -C -O NE --server-ip IP --server-port PORT
+
+
+IF Corportate Proxy Authentication (NTLM) required for reverse connection on Compromised Host :
+
+      $ python pivotsuite.py -C -O SP --ntlm-proxy-ip IP --ntlm-proxy-port PORT --username USERNAME --password PASSWORD 
+        --server-ip IP --server-port PORT
