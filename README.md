@@ -44,7 +44,7 @@ which was only accessable from compromised machine.
             
                   OR
                   
-        pip install pivotsuite
+        pip install PivotSuite
      
      PivotSuite works out of the box with Python version 2.7.x and 3.6.x on any platform.
      
