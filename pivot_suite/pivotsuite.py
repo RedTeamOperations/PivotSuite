@@ -3,6 +3,15 @@ import sys
 import optparse
 import logging
 
+try:
+    from pivot_suite.server import main as server_main
+except ImportError:
+    from server import main as server_main
+
+try:
+    from pivot_suite.client import main as client_main
+except ImportError:
+    from client import main as client_main
 
 logger = logging.getLogger()
 handler = logging.StreamHandler()
@@ -122,11 +131,8 @@ def main():
     # Appropriate function calling according to the option specify
     if cmd_options.server:
         try:
-            try:
-                from . import server
-            except ValueError:
-                import server
-            server.main(forward_socks=cmd_options.forward,reverse_socks=cmd_options.reverse,server_ip=cmd_options.server_ip,
+            logger.removeHandler(handler)
+            server_main(forward_socks=cmd_options.forward,reverse_socks=cmd_options.reverse,server_ip=cmd_options.server_ip,
                         server_port=cmd_options.server_port,remote_ip=cmd_options.remote_ip,remote_port=cmd_options.remote_port,
                         option=cmd_options.option,protocol=cmd_options.protocol)
         except ImportError:
@@ -134,11 +140,8 @@ def main():
             logger.removeHandler(handler)
     else:
         try:
-            try:
-                from . import client
-            except ValueError:
-                import client
-            client.main(server_host=cmd_options.server_ip,server_port=cmd_options.server_port,option=cmd_options.option,protocol=cmd_options.protocol,
+            logger.removeHandler(handler)
+            client_main(server_host=cmd_options.server_ip,server_port=cmd_options.server_port,option=cmd_options.option,protocol=cmd_options.protocol,
                         local_forward=cmd_options.local_forward,remote_forward=cmd_options.remote_forward,
                         local_ip=cmd_options.local_ip,local_port=cmd_options.local_port,
                         remote_ip=cmd_options.remote_ip,remote_port=cmd_options.remote_port,ntlm_proxy_host=cmd_options.ntlm_proxy_ip,

@@ -41,7 +41,7 @@ def sock_proxy(connection):
         header = six.u(connection.recv(1024))
         version, nmethods = struct.unpack("!BB", header[:2])
 
-        connection.sendall(six.b(struct.pack("!BB", 5, 0)))
+        connection.sendall(struct.pack("!BB", 5, 0))
         version, cmd, _, address_type = struct.unpack("!BBBB", six.u(connection.recv(4)))
 
         address = socket.inet_ntoa(six.u(connection.recv(4)))
@@ -55,7 +55,7 @@ def sock_proxy(connection):
         port = bind_address[1]
         reply = struct.pack("!BBBBIH", 5, 0, 0, address_type, addr, port)
 
-        connection.sendall(six.b(reply))
+        connection.sendall(reply)
     else:
         header = connection.recv(1024)
         version, nmethods = struct.unpack("!BB", header[:2])

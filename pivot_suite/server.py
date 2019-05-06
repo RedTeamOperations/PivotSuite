@@ -1,4 +1,7 @@
-import socketserver
+try:
+    import socketserver
+except:
+    import SocketServer as socketserver
 import socket
 import select
 import sys
@@ -6,7 +9,11 @@ import random
 import logging
 import logging.handlers
 import struct
-import six
+
+try:
+    from pivot_suite import six
+except ImportError:
+    import six
 from os import _exit
 
 logger = None
@@ -220,7 +227,7 @@ class ReverseHandler(socketserver.StreamRequestHandler):
             client_socket, client_address = remote_socket.accept()
             if six.PY3:
                 data = client_socket.recv(1024)
-                self.connection.sendall(six.b(data))
+                self.connection.sendall(data)
             else:
                 data = client_socket.recv(1024)
                 self.connection.sendall(data)
@@ -552,6 +559,7 @@ def main(forward_socks=None, reverse_socks=None, server_ip='0.0.0.0', server_por
             server = ThreadingTCPServer((HOST, PORT), ReverseHandler)
             logger.removeHandler(handler)
             logger.debug('[*] PivotSuite TCP Server LISTEN On {}:{} For Reverse TCP Connection'.format(server.server_address[0],server.server_address[1]))
+            logger.removeHandler(handler)
             server.serve_forever()
         except KeyboardInterrupt:
             logger.debug('[-] SIGINT Received. Closing Server and Exiting')
