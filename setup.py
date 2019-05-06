@@ -10,7 +10,7 @@ setup(
     author_email='admin@myhacker.online',
     description='PivotSuite : A Network Pivoting Toolkit',
     long_description="A Network Pivoting Toolkit for Red Teamers / Penetration Testers. "
-                     "Visit for More Informations: https://github.com/RedTeamOperations/PivotSuite",
+                     "For More Informations Visit: https://github.com/RedTeamOperations/PivotSuite",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Operating System :: OS Independent",
