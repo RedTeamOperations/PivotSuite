@@ -227,3 +227,9 @@ IF Corportate Proxy Authentication (NTLM) required for reverse connection on Com
 
       $ python pivotsuite.py -C -O SP --ntlm-proxy-ip IP --ntlm-proxy-port PORT --username USERNAME --password PASSWORD 
         --server-ip IP --server-port PORT
+        
+ #### Contact Information :
+       I would greatly appreciate it if you kindly give me some feedback or suggestion on PivotSuite Toolkit. 
+       Email:    admin@myhacker.online 
+       LinkedIn: https://www.linkedin.com/in/cehmanish/ 
+ 
