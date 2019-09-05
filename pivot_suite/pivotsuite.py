@@ -30,19 +30,19 @@ def main():
     parser = optparse.OptionParser(description='Network Pivot Suite',usage="Usage: %prog [options] SERVER-IP SERVER-PORT",version="%prog 1.0")
     parser.add_option('-S', '--server', action="store_true", dest='server', help="Run PivotSuite as a Server")
     parser.add_option('-C', '--client', action="store_true", dest='client',help="Run PivotSuite as a Client")
-    parser.add_option('--server-ip', action="store", dest='server_ip', default='0.0.0.0',help="Server Listen/Connect IP address, Default  0.0.0.0")
-    parser.add_option('--server-port', action="store", dest='server_port', default='7777',help="Server Listen/Connect Port, Default 7777")
+    parser.add_option('-i', '--server-ip', action="store", dest='server_ip', default='0.0.0.0',help="Server Listen/Connect IP address, Default  0.0.0.0")
+    parser.add_option('-p', '--server-port', action="store", dest='server_port', default='7777',help="Server Listen/Connect Port, Default 7777")
 
 
     pivot_suite_server = optparse.OptionGroup(parser, 'PivotSuite Server Options')
 
     pivot_suite_server.add_option('-F', '--forward-connection', action="store_true", dest='forward', help="Forward Network Traffic")
-    pivot_suite_server.add_option('--server-option',metavar="SP/PF", action="store", dest='option', default='SP',
+    pivot_suite_server.add_option('-o', '--server-option',metavar="SP/PF", action="store", dest='option', default='SP',
                       help="Use Server as Socks_Proxy(SP)/Port_Forward(PF), Default SP")
-    pivot_suite_server.add_option('--network-protocol',metavar="T/U", action="store", dest='protocol', default='T',
+    pivot_suite_server.add_option('-n', '--network-protocol',metavar="T/U", action="store", dest='protocol', default='T',
                       help="Select Protocol For Port Forwarding TCP(T)/ UDP(U), Default T")
-    pivot_suite_server.add_option('--forward-ip', metavar="Remote-Host-IP",action="store", dest='remote_ip',default=None, help="Remote Host IP for Port Forwarding ")
-    pivot_suite_server.add_option('--forward-port',metavar="Remote-Host-Port",action="store", dest='remote_port',default=None, help="Remote Host Port for Port Forwarding")
+    pivot_suite_server.add_option('-I', '--forward-ip', metavar="Remote-Host-IP",action="store", dest='remote_ip',default=None, help="Remote Host IP for Port Forwarding ")
+    pivot_suite_server.add_option('-P', '--forward-port',metavar="Remote-Host-Port",action="store", dest='remote_port',default=None, help="Remote Host Port for Port Forwarding")
     pivot_suite_server.add_option('-W', '--reverse-connection', action="store_true", dest='reverse',
                                   help="Reverse Network Traffic")
     parser.add_option_group(pivot_suite_server)
@@ -50,17 +50,17 @@ def main():
 
     pivot_suite_client = optparse.OptionGroup(parser, 'PivotSuite Client Options')
 
-    pivot_suite_client.add_option('-O','--option',metavar="SP/PF/NE" ,action="store", dest='option', default='SP',
+    pivot_suite_client.add_option('-o','--client-option',metavar="SP/PF/NE" ,action="store", dest='option', default='SP',
                       help="Use Client as Socks_Proxy(SP)/ Port_Forwarding(PF)/ Network_Enumeration(NE), Default SP")
     pivot_suite_client.add_option('-L', '--local-forward', action="store_true", dest='local_forward',default=None ,help="Use Local Port Forwarding")
     pivot_suite_client.add_option('-R', '--remote-forward', action="store_true", dest='remote_forward',default=None,
                       help="Use Remote Port Forwarding")
-    pivot_suite_client.add_option('-P', '--protocol',metavar="T/U",action="store", dest='protocol', default='T',
+    pivot_suite_client.add_option('-n', '--network-protocol',metavar="T/U",action="store", dest='protocol', default='T',
                       help="Select Protocol For Port Forwarding TCP(T)/ UDP(U), Default T")
     pivot_suite_client.add_option('--local-ip', action="store", dest='local_ip',help="Local IP For Port Forwarding",default=None)
     pivot_suite_client.add_option('--local-port', action="store", dest='local_port',help="Local Port For Port Forwarding",default='0')
-    pivot_suite_client.add_option('--remote-ip', action="store", dest='remote_ip',help="Remote IP For Port Forwarding",default=None)
-    pivot_suite_client.add_option('--remote-port', action="store", dest='remote_port',help="Remote Port For Port Forwarding",default='0')
+    pivot_suite_client.add_option('-I', '--remote-ip', action="store", dest='remote_ip',help="Remote IP For Port Forwarding",default=None)
+    pivot_suite_client.add_option('-P', '--remote-port', action="store", dest='remote_port',help="Remote Port For Port Forwarding",default='0')
     parser.add_option_group(pivot_suite_client)
 
 
