@@ -234,7 +234,7 @@ IF Corportate Proxy Authentication (NTLM) required for reverse connection on Com
  
 I would greatly appreciate it if you kindly give me some feedback or suggestion on PivotSuite Toolkit. 
 
-Email:    admin@myhacker.online 
+Email:    manish.gupta@cyberwarfare.live 
 
-LinkedIn: https://www.linkedin.com/in/cehmanish/ 
+LinkedIn: https://www.linkedin.com/in/0hack/ 
  
