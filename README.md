@@ -5,17 +5,17 @@
 
 #### Description 
 PivotSuite is a portable, platform independent and powerful network pivoting toolkit, 
-Which helps Red Teamers / Penetration Testers to use a compromised system to move around inside a network. 
-It is a Standalone Utility, Which can use as a Server or as a Client.
+which helps Red Teamers / Penetration Testers to use a compromised system to move around inside a network. 
+It is a Standalone Utility, which can use as a Server or as a Client.
 
 ##### PivotSuite as a Server : 
-If the compromised host is directly accessable (Forward Connection) from Our pentest machine,
-Then we can run pivotsuite as a server on compromised machine and access the different subnet hosts from our pentest machine, 
-Which was only accessable from compromised machine. 
+If the compromised host is directly accessible (Forward Connection) from our pentest machine,
+then we can run PivotSuite as a server on compromised machine and access the different subnet hosts from our pentest machine, 
+which was only accessible from compromised machine. 
 
 ##### PivotSuite as a Client : 
 If the compromised host is behind a Firewall / NAT and isn't directly accessable from our 
-pentest machine, Then we can run pivotsuite as a server on pentest machine and pivotsuite as a client on compromised machine
+pentest machine, then we can run pivotsuite as a server on pentest machine and pivotsuite as a client on compromised machine
 for creating a reverse tunnel (Reverse Connection). Using this we can reach different subnet hosts from our pentest machine,
 which was only accessable from compromised machine. 
 
@@ -25,7 +25,7 @@ which was only accessable from compromised machine.
 2. Supported Forward & Reverse socks5 Proxy Server
 3. UDP over TCP and TCP over TCP Protocol Supported
 4. Corporate Proxy Authentication (NTLM) Supported
-5. Inbuilt Network Enumeration Functionality, Eg. Host Discovery, Port Scanning, OS Command Execution 
+5. Inbuilt Network Enumeration Functionality, e.g. Host Discovery, Port Scanning, OS Command Execution 
 6. PivotSuite allows to get access to different Compromised host and their network, simultaneously (Act as C&C Server) 
 7. Single Pivoting, Double Pivoting and Multi-level pivoting can  perform with help of PivotSuite. 
 8. PivotSuite also works as SSH Dynamic Port Forwarding but in the Reverse Direction.   
@@ -37,7 +37,7 @@ which was only accessable from compromised machine.
 2. PivotSuite also works when Compromised host is behind a Firewall / NAT, When Only Reverse Connection is allowed. 
 3. No dependency other than python standard libraries.
 4. No Installation Required 
-5. UDP Port is accessable over TCP
+5. UDP Port is accessible over TCP
 
 #### Installation
 1. You can download the latest version of pivotsuite by cloning the Git repository or PyPI Package.
@@ -225,7 +225,7 @@ IF the Compromised host is behind a Firewall / NAT and directly not accessible f
                 $ python pivotsuite.py -C -O NE --server-ip IP --server-port PORT
 
 
-IF Corportate Proxy Authentication (NTLM) required for reverse connection on Compromised Host :
+IF Corporate Proxy Authentication (NTLM) required for reverse connection on Compromised Host :
 
       $ python pivotsuite.py -C -O SP --ntlm-proxy-ip IP --ntlm-proxy-port PORT --username USERNAME --password PASSWORD 
         --server-ip IP --server-port PORT
